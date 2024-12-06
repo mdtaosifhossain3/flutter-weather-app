@@ -18,7 +18,7 @@ class WeatherModel {
         List.from(json['weather']).map((e) => Weather.fromJson(e)).toList();
 
     main = Main.fromJson(json['main']);
-    visibility = json['visibility'].toDouble();
+    visibility = json['visibility'];
     wind = Wind.fromJson(json['wind']);
 
     name = json['name'];
@@ -60,12 +60,12 @@ class Main {
   late final humidity;
 
   Main.fromJson(Map<String, dynamic> json) {
-    temp = json['temp'].toDouble();
-    feelsLike = json['feels_like'].toDouble();
-    tempMin = json['temp_min'].toDouble();
-    tempMax = json['temp_max'].toDouble();
-    pressure = json['pressure'].toDouble();
-    humidity = json['humidity'].toDouble();
+    temp = json['temp'];
+    feelsLike = json['feels_like'];
+    tempMin = json['temp_min'];
+    tempMax = json['temp_max'];
+    pressure = json['pressure'];
+    humidity = json['humidity'];
   }
 }
 
@@ -73,9 +73,9 @@ class Wind {
   Wind({
     required this.speed,
   });
-  late final double speed;
+  late final speed;
 
   Wind.fromJson(Map<String, dynamic> json) {
-    speed = json['speed'].toDouble();
+    speed = json['speed'];
   }
 }

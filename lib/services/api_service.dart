@@ -10,9 +10,11 @@ class ApiService {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     double? lat = sharedPreferences.getDouble("LAT");
     double? lon = sharedPreferences.getDouble("LON");
+
+    print("Lat: $lat");
     try {
       var res = await http.get(Uri.parse(
-          "https://api.openweathermap.org/data/2.5/weather?lat=${lat ?? 23.8041}&lon=${lon ?? 90.4152}&appid=${dotenv.env["API_KEY"]}&units=metric"));
+          "https://api.openweathermap.org/data/2.5/weather?lat=${lat ?? 23.8041}&lon=${lon ?? 90.4152}&appid=8c71ecf671ff0b5ca0ae59f155cc8f27&units=metric"));
 
       if (res.statusCode == 200) {
         var jsonData = jsonDecode(res.body);
@@ -44,6 +46,7 @@ class ApiService {
       } else if (res.statusCode == 404) {
         throw Exception("City not found. Please enter a valid city name.");
       } else {
+        print(jsonDecode(res.body));
         throw Exception("Failed to fetch weather data.");
       }
     } catch (e) {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/colors/colors.dart';
 import 'package:weather_app/screens/mainScreen/main_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,16 +23,14 @@ class _SplashScreenState extends State<SplashScreen> {
     Navigator.pushReplacement(
       // ignore: use_build_context_synchronously
       context,
-      MaterialPageRoute(
-          builder: (context) =>
-              const WeatherHomeScreen()), // replace with your actual home screen
+      MaterialPageRoute(builder: (context) => const WeatherHomeScreen()),
     );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blue, // Customize background color
+      backgroundColor: MyColors.blueColor, // Customize background color
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -43,10 +42,10 @@ class _SplashScreenState extends State<SplashScreen> {
             // Loading indicator
 
             const SizedBox(height: 5),
-            const Text(
+            Text(
               'Weather App',
               style: TextStyle(
-                  color: Colors.white,
+                  color: MyColors.whiteColor,
                   fontSize: 18,
                   fontWeight: FontWeight.bold),
             ),

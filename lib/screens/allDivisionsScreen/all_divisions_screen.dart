@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/providers/api_data_provider.dart';
+import '../mainScreen/main_screen.dart';
 import 'widgets/weather_card_divisions.dart';
 
 class AllDivisionsScreen extends StatefulWidget {
@@ -31,6 +32,12 @@ class _AllDivisionsScreenState extends State<AllDivisionsScreen> {
       appBar: AppBar(
         title: const Text("All Divisions"),
         centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => WeatherHomeScreen()));
+            },
+            icon: Icon(Icons.arrow_back_ios)),
       ),
       body: Consumer<ApiDataProvider>(
         builder: (context, state, child) {

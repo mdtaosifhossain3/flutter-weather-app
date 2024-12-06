@@ -17,6 +17,8 @@ class LatLonProvider extends ChangeNotifier {
       }
 
       await Geolocator.requestPermission();
+      notifyListeners();
+      return;
     } else {
       LocationSettings locationSettings = const LocationSettings(
         accuracy: LocationAccuracy.high,
@@ -30,6 +32,7 @@ class LatLonProvider extends ChangeNotifier {
       sharedPreferences.setDouble("LAT", currentLat!);
       sharedPreferences.setDouble("LON", currentLon!);
       notifyListeners();
+      return;
     }
   }
 }

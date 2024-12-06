@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/providers/api_data_provider.dart';
 import 'package:weather_app/screens/homeScreen/home_screen.dart';
+import 'package:weather_app/screens/mainScreen/main_screen.dart';
 import 'package:weather_app/widgets/weather_info_card.dart';
 
 class SearchScreen extends StatelessWidget {
@@ -16,7 +17,7 @@ class SearchScreen extends StatelessWidget {
         leading: InkWell(
             onTap: () =>
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return HomeScreen();
+                  return WeatherHomeScreen();
                 })),
             child: const Icon(Icons.arrow_back)),
         title: const Text("Search"),
@@ -43,8 +44,8 @@ class SearchScreen extends StatelessWidget {
                                   color: Colors.blue, width: 2.00))),
                     );
                   }),
-                  const SizedBox(
-                    height: 15,
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .03,
                   ),
                   Center(
                     child: TextButton(
@@ -65,7 +66,7 @@ class SearchScreen extends StatelessWidget {
                         backgroundColor:
                             Colors.blue, // Set background color to blue
                         padding: const EdgeInsets.symmetric(
-                            vertical: 12.0, horizontal: 20.0),
+                            vertical: 12.0, horizontal: 60.0),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8.0),
                         ),
@@ -80,14 +81,20 @@ class SearchScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 15,
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .03,
                   ),
                   Consumer<ApiDataProvider>(builder: (context, state, child) {
                     return state.isLoading
-                        ? const Center(
-                            child:
-                                CircularProgressIndicator()) // Show loading indicator
+                        ? Center(
+                            child: Column(
+                            children: [
+                              SizedBox(
+                                height: MediaQuery.of(context).size.height * .2,
+                              ),
+                              const CircularProgressIndicator(),
+                            ],
+                          )) // Show loading indicator
                         : state.errorMessage != null
                             ? Text(state.errorMessage!,
                                 textAlign: TextAlign.center,
