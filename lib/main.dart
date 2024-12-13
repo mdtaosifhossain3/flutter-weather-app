@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:provider/provider.dart';
 import 'package:weather_app/providers/api_data_provider.dart';
 import 'package:weather_app/providers/lat_lon_provider.dart';
@@ -7,7 +6,7 @@ import 'package:weather_app/screens/otpView/otp_verify_view.dart';
 import 'package:weather_app/screens/splashScreen/splash_screen.dart';
 
 void main() async {
-  await dotenv.load(fileName: '.env');
+
   runApp(MultiProvider(providers: [
     ChangeNotifierProvider(create: (_) => ApiDataProvider()),
     ChangeNotifierProvider(create: (_) => LatLonProvider()),

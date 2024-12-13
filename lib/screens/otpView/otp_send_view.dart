@@ -40,7 +40,7 @@ class OtpSendView extends StatelessWidget {
                         contentPadding: const EdgeInsets.only(left: 15),
                         fillColor: MyColors.whiteColor,
                         filled: true,
-                        hintText: "Enter your phone number...",
+                        hintText: "Enter your Robi/Airtel number...",
                         hintStyle: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.w400,

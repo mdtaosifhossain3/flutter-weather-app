@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -74,7 +73,7 @@ class SendOTPService {
     // Send HTTP POST request to the API
     try {
       final response = await http.post(
-        Uri.parse('${dotenv.env["API_LINK"]}/OTP_request.php'),
+        Uri.parse('https://fluttbizitsolutions.com/api/request_otp_atms.php'),
         body: data,
       );
 
@@ -115,13 +114,13 @@ class SendOTPService {
       Navigator.pop(context);
       print(e);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Network Issue ${e.toString()}')),
+        SnackBar(content: Text('Network Issue ')),
       );
     } catch (e) {
       Navigator.pop(context);
       // Handle error in case of network issues
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
+        SnackBar(content: Text('Something went wrong')),
       );
     }
   }

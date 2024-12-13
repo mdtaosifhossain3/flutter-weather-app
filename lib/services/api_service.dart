@@ -1,6 +1,6 @@
 import "dart:convert";
+import "dart:io";
 import "package:flutter/foundation.dart";
-import "package:flutter_dotenv/flutter_dotenv.dart";
 import "package:http/http.dart" as http;
 import "package:shared_preferences/shared_preferences.dart";
 import "package:weather_app/models/weather_model.dart";
@@ -38,7 +38,7 @@ class ApiService {
   Future<WeatherModel?> getWeatherByCity({required String cityName}) async {
     try {
       var res = await http.get(Uri.parse(
-          "https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=${dotenv.env["API_KEY"]}&units=metric"));
+          "https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=b1cb26993ffeacb28752e8a095593c75&units=metric"));
 
       if (res.statusCode == 200) {
         var jsonData = jsonDecode(res.body);
@@ -46,10 +46,12 @@ class ApiService {
       } else if (res.statusCode == 404) {
         throw Exception("City not found. Please enter a valid city name.");
       } else {
-        print(jsonDecode(res.body));
+
         throw Exception("Failed to fetch weather data.");
       }
-    } catch (e) {
+    } on SocketDirection{
+      throw Exception("Network Issue");
+    }  catch (e) {
       if (kDebugMode) {
         print("Error: $e");
       }

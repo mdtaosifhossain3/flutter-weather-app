@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
   // Function to send a message to the SMS app
   Future<void> sendStopMessage() async {
     const phoneNumber = '21213';
-    const message = 'STOP chtai';
+    const message = 'STOP atms';
 
     final Uri smsUri = Uri(
       scheme: 'sms',
@@ -144,43 +144,43 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor:
             Colors.transparent, // Transparent for seamless transition
         elevation: 0, // Remove shadow
-        // actions: [
-        //   Builder(
-        //     builder: (context) {
-        //       return IconButton(
-        //           onPressed: () async {
-        //             await showPopover(
-        //                 context: context,
-        //                 bodyBuilder: (context) => Column(
-        //                       children: [
-        //                         TextButton(
-        //                             onPressed: () async {
-        //                               await sendStopMessage();
-        //                               await Future.delayed(
-        //                                   const Duration(seconds: 6));
-        //                               Navigator.push(context,
-        //                                   MaterialPageRoute(builder: (_) {
-        //                                 return OtpSendView();
-        //                               }));
-        //                             },
-        //                             child: const Text(
-        //                               "Unsubscribed",
-        //                               style: TextStyle(color: Colors.red),
-        //                             ))
-        //                       ],
-        //                     ),
-        //                 width: 120,
-        //                 height: 50,
-        //                 backgroundColor: MyColors.blackColor,
-        //                 direction: PopoverDirection.bottom);
-        //           },
-        //           icon: const Icon(
-        //             Icons.logout_outlined,
-        //             color: Colors.white,
-        //           ));
-        //     },
-        //   )
-        // ],
+        actions: [
+          Builder(
+            builder: (context) {
+              return IconButton(
+                  onPressed: () async {
+                    await showPopover(
+                        context: context,
+                        bodyBuilder: (context) => Column(
+                              children: [
+                                TextButton(
+                                    onPressed: () async {
+                                      await sendStopMessage();
+                                      await Future.delayed(
+                                          const Duration(seconds: 6));
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (_) {
+                                        return OtpSendView();
+                                      }));
+                                    },
+                                    child: const Text(
+                                      "Unsubscribe",
+                                      style: TextStyle(color: Colors.red),
+                                    ))
+                              ],
+                            ),
+                        width: 120,
+                        height: 50,
+                        backgroundColor: MyColors.blackColor,
+                        direction: PopoverDirection.bottom);
+                  },
+                  icon: const Icon(
+                    Icons.logout_outlined,
+                    color: Colors.white,
+                  ));
+            },
+          )
+        ],
       ),
       extendBodyBehindAppBar: true,
       body: Container(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:weather_app/screens/otpView/otp_send_view.dart';
 
 import '../../colors/colors.dart';
 import '../../services/verify_otp_service.dart';
@@ -13,9 +14,12 @@ class OtpVerificationView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: true,
+
           backgroundColor: Colors.transparent,
           surfaceTintColor: Colors.transparent,
+          leading: IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (_)=> OtpSendView()));
+          }, icon: Icon(Icons.arrow_back_ios)),
         ),
         backgroundColor: MyColors.blueColor,
         body: Padding(

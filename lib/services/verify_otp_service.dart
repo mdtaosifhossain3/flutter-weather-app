@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -72,13 +71,14 @@ class VerifyOTPService {
     // Send HTTP POST request to the API
     try {
       final response = await http.post(
-        Uri.parse('${dotenv.env["API_LINK"]}/OTP_verify.php'),
+        Uri.parse('https://fluttbizitsolutions.com/api/verify_otp_atms.php'),
         body: data,
       );
 
       var body = response.body;
       final statusCode = extractValue(body, 'Status code').trim();
       final result = statusCode.replaceAll(":", "").trim();
+
       if (result == "S1000") {
         Navigator.push(context, MaterialPageRoute(builder: (_) {
           return const WeatherHomeScreen();
@@ -96,12 +96,12 @@ class VerifyOTPService {
     } on SocketException {
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Time Out')),
+        const SnackBar(content: Text('Network issue')),
       );
     } catch (e) {
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
+        SnackBar(content: Text('Something went wrong')),
       );
     }
   }
